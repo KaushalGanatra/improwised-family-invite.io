@@ -26,10 +26,20 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
 
+onMounted(() => {
+  // Check if it's the first time loading the page
+  if (!localStorage.getItem('loadedBefore')) {
+    // Set a flag indicating that the page has been loaded before
+    localStorage.setItem('loadedBefore', true);
+    // Reload the page
+    location.reload();
+  }
+});
 </script>
 
-<style>
+<style scoped>
 .background {
   background-color: #3498db;
   justify-content: center;
@@ -55,14 +65,5 @@
 .background p {
   font-size: 18px; /* Adjust font size for paragraphs */
   margin-bottom: 15px; /* Add margin bottom for spacing */
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 </style>
