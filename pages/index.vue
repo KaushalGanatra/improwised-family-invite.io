@@ -1,71 +1,78 @@
 <template>
   <div class="background">
-    <div class="modal" v-if="counter === 0">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content custom-modal">
-          <div class="modal-header">
-            <h5 class="modal-title">Enter Your Name</h5>
-          </div>
-          <div class="modal-body">
-            <input type="text" class="form-control full-width" placeholder="Name Please" v-model="userName">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" @click="nameSubmit">Let's Go</button>
+    <div class="quiz-container">
+      <div class="modal" v-if="counter === 0">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content custom-modal">
+            <div class="modal-header">
+              <h5 class="modal-title">Enter Your Name and Open your surprise Box &#127873;</h5>
+            </div>
+            <div class="modal-body">
+              <input type="text" class="form-control full-width" placeholder="Name Please" v-model="userName">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" @click="nameSubmit">Let's Go</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div v-if="counter === 1" class="center-content text-center">
-      <h4><u><b>Are you sure you're {{ userName }}?</b></u></h4>
-      <img src="../are-you-sure.png" alt="Photo not laoding! No worries, you continue" class="img-thumbnail transparent-bg">
-      <button type="button" class="btn btn-warning full-width-button" @click="backToName">Okay let me tell you my name honestly</button>
-      <button type="button" class="btn btn-success full-width-button" @click="NextFromValidation">Yes I'm!!</button>
-    </div>
 
-    <div v-if="counter === 2" class="center-content text-center">
-      <div class="welcome-text">
-        <h2 class="mb-5"><u>Welcome {{ userName }}</u></h2>
-        <h4>Let's Go on a Quiz about our Improwised Family</h4>
-        <ol>
-          <li>When was our company established?</li>
-          <ul>
-            <li><input type="radio" id="q1a" name="q1" value="a"> <label for="q1a">2001</label></li>
-            <li><input type="radio" id="q1b" name="q1" value="b"> <label for="q1b">2011</label></li>
-            <li><input type="radio" id="q1c" name="q1" value="c"> <label for="q1c">2013</label></li>
-            <li><input type="radio" id="q1d" name="q1" value="d"> <label for="q1d">2009</label></li>
-          </ul>
-          <li>Date when the company was established?</li>
-          <ul>
-            <li><input type="radio" id="q2a" name="q2" value="a"> <label for="q2a">19</label></li>
-            <li><input type="radio" id="q2b" name="q2" value="b"> <label for="q2b">18</label></li>
-            <li><input type="radio" id="q2c" name="q2" value="c"> <label for="q2c">23</label></li>
-            <li><input type="radio" id="q2d" name="q2" value="d"> <label for="q2d">19</label></li>
-          </ul>
-          <li>In which month?</li>
-          <ul>
-            <li><input type="radio" id="q3a" name="q3" value="a"> <label for="q3a">Jan</label></li>
-            <li><input type="radio" id="q3b" name="q3" value="b"> <label for="q3b">Feb</label></li>
-            <li><input type="radio" id="q3c" name="q3" value="c"> <label for="q3c">May</label></li>
-            <li><input type="radio" id="q3d" name="q3" value="d"> <label for="q3d">Dec</label></li>
-          </ul>
-        </ol>
+      <div v-if="counter === 1" class="center-content text-center">
+        <h4><u><b>Are you sure you're {{ userName }}?</b></u></h4>
+        <img src="../are-you-sure.png" alt="Are you sure?" class="img-thumbnail transparent-bg">
+        <button type="button" class="btn btn-warning full-width-button" @click="backToName">No, let me tell you my name honestly</button>
+        <button type="button" class="btn btn-success full-width-button" @click="NextFromValidation">Yes, I'm</button>
       </div>
 
-  <div v-if="rightANS">
-   <p>But Why did you asked that!?</p>  <NuxtLink to="/padhariye" style="color: black;"> <u>Click to know</u> </NuxtLink>
+      <div v-if="counter === 2" class="center-content text-center">
+        <div class="welcome-text">
+          <h2><u>Welcome {{ userName }} &#127881;</u></h2>
+          <h4>Let's first Go on a Quiz about our Improwised Family</h4><hr>
+          <ol class="quiz">
+            <li>
+              <p><b>When was our company established?</b></p>
+              <div class="options">
+                <label><input type="radio" name="q1" value="a"> 2001</label>
+                <label><input type="radio" name="q1" value="b"> 2011</label>
+                <label><input type="radio" name="q1" value="c"> 2013</label>
+                <label><input type="radio" name="q1" value="d"> 2009</label>
+              </div>
+            </li>
+            <li>
+              <p><b>Date when the company was established?</b></p>
+              <div class="options">
+                <label><input type="radio" name="q2" value="a"> 19</label>
+                <label><input type="radio" name="q2" value="b"> 18</label>
+                <label><input type="radio" name="q2" value="c"> 23</label>
+                <label><input type="radio" name="q2" value="d"> 19</label>
+              </div>
+            </li>
+            <li>
+              <p><b>In which month?</b></p>
+              <div class="options">
+                <label><input type="radio" name="q3" value="a"> Jan</label>
+                <label><input type="radio" name="q3" value="b"> Feb</label>
+                <label><input type="radio" name="q3" value="c"> May</label>
+                <label><input type="radio" name="q3" value="d"> Dec</label>
+              </div>
+            </li>
+          </ol>
+          <hr>
+          <div v-if="rightANS" class="right-answer">
+            <p>But why did you ask that!?</p>
+            <NuxtLink to="/padhariye" class="btn btn-secondary">Click to know</NuxtLink>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="button" class="btn btn-primary" @click="submitQuiz">Submit</button>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <!-- Submit Button -->
-  <button type="button" class="btn btn-primary" @click="submitQuiz">Submit</button>
-</div>
-      </div>
-    </div>
-</div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-
 const counter = ref(0);
 const userName = ref('');
 const savedUserName = ref('');
@@ -73,7 +80,7 @@ const rightANS = ref(false);
 
 const nameSubmit = () => {
   if (userName.value === '') {
-    alert("Arey naam toa batao");
+    alert("Please enter your name");
     return;
   }
   counter.value++;
@@ -109,13 +116,17 @@ const submitQuiz = () => {
 };
 </script>
 
-<style>
+<style scoped>
 .background {
   background-color: #3498db;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
+  justify-content: center;
+}
+
+.quiz-container {
+  max-width: 90%;
 }
 
 .modal {
@@ -134,7 +145,6 @@ const submitQuiz = () => {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  max-width: 90%;
   padding: 20px;
 }
 
@@ -163,62 +173,59 @@ const submitQuiz = () => {
 
 .transparent-bg {
   background-color: transparent;
-  border: none; /* Remove border */
+  border: none;
 }
 
 .full-width-button {
   width: 100%;
-  border: 1px solid #000; /* Add border */
-}
-
-.center-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .welcome-text {
   margin-bottom: 20px;
 }
 
-.welcome-text h4 {
-  font-size: 20px;
-}
-
 .welcome-text h2 {
-  font-size: 36px;
-  text-align: center;
-  color: #000
+  font-size: 28px;
 }
 
-.btn-next {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 25px;
-  padding: 10px 20px;
+.welcome-text h4 {
   font-size: 18px;
-  transition: all 0.3s ease;
 }
 
-.btn-next:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
+.quiz {
+  list-style-type: none;
+  padding: 0;
+}
+
+.quiz li {
+  margin-bottom: 20px;
+}
+
+.quiz li p {
+  margin-bottom: 10px;
+}
+
+.quiz li .options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.quiz li label {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.right-answer {
+  margin-top: 20px;
 }
 
 @media (max-width: 768px) {
-  .welcome-text h4 {
-    font-size: 18px;
-  }
-
   .welcome-text h2 {
-    font-size: 30px;
+    font-size: 24px;
   }
 
-  .btn-next {
+  .welcome-text h4 {
     font-size: 16px;
-    padding: 8px 16px;
   }
 }
 </style>
