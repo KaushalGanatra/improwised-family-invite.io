@@ -1,4 +1,9 @@
 export default {
+  // Add or modify the router base path
+  router: {
+    base: '/improwised-family-invite.io/' // Replace <repository-name> with your GitHub repository name
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'meetup_invitation',
